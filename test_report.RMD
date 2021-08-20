@@ -1,0 +1,31 @@
+---
+title: "PRELIMINARY WHOLE GENOME SEQUENCE ANALYSIS REPORT"
+author: ""
+date: "Date: `r format(Sys.time(), '%d/%m/%Y')`"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: false
+    self_contained: yes
+    css: esr-styles.css
+    highlight: pygments
+---
+
+<img src="./images/ESR_logo.svg" style="position:absolute;top:26px;right:10px;width:25%;" />
+
+## Lineage  
+
+
+## Interim Analysis  
+
+
+## Cases detected in Managed Isolation
+
+
+
+-----
+
+**Notice of Confidential Information:**
+If you recieve this report in error, please notify the sender immediately. The information contained in this report is legally privilledged and confidential. Unauthorised use, dissemination, distribution or reproduction of this report is prohibited.
