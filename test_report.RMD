@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FA
 ```{r}
 # Load libraries
 library(dplyr)
-library(DT)
+library(flextable)
 
 # Read data and set header names (thing's I don't know what they are, set to var_*)
 data <- read.table("/home/lkemp/covid_reporting_template/report_table.tsv",
@@ -33,25 +33,27 @@ data <- read.table("/home/lkemp/covid_reporting_template/report_table.tsv",
 # Create a column conditionally adding var_3 to lineage for table (whe partial, repeat or fail)
 data <- data %>%
   mutate(lineage_extra = case_when(
-  var_3 == "PARTIAL" ~ paste(lineage, "(partial)"),
-  var_3 == "REPEAT" ~ paste(lineage, "(repeat)"),
-  var_3 == "FAIL" ~ paste(lineage, "(fail)"),
-  TRUE ~ lineage
-))
+    var_3 == "PARTIAL" ~ paste(lineage, "(partial)"),
+    var_3 == "REPEAT" ~ paste(lineage, "(repeat)"),
+    var_3 == "FAIL" ~ paste(lineage, "(fail)"),
+    TRUE ~ lineage
+  ))
 
 # Create table
 data %>%
   select("episerve_number", "dhb", "lineage_extra", "date_received") %>%
-  knitr::kable(col.names = c("Episerve number",
-                             "DHB",
-                             "Lineage",
-                             "Date received"))
+  flextable() %>%
+  set_header_labels(values = list(episerve_number = "Episerve number",
+                                  dhb = "DHB",
+                                  lineage_extra = "Lineage",
+                                  date_received = "Date Received")) %>%
+  autofit() %>%
+  theme_alafoli()
 ```
 
-## Lineage  
+## Lineage
 
-
-## Interim Analysis  
+## Interim Analysis
 
 
 ## Cases detected in Managed Isolation
