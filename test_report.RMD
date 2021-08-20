@@ -15,6 +15,39 @@ output:
 
 <img src="./images/ESR_logo.svg" style="position:absolute;top:26px;right:10px;width:25%;" />
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FALSE)
+```
+
+```{r}
+# Load libraries
+library(dplyr)
+library(DT)
+
+# Read data and set header names (thing's I don't know what they are, set to var_*)
+data <- read.table("/home/lkemp/covid_reporting_template/report_table.tsv",
+                   sep = "\t",
+                   col.names = c("var_1", "episerve_number", "dhb", "lineage", "date_received", "var_2", "var_3"),
+                   na.strings = "NA")
+
+# Create a column conditionally adding var_3 to lineage for table (whe partial, repeat or fail)
+data <- data %>%
+  mutate(lineage_extra = case_when(
+  var_3 == "PARTIAL" ~ paste(lineage, "(partial)"),
+  var_3 == "REPEAT" ~ paste(lineage, "(repeat)"),
+  var_3 == "FAIL" ~ paste(lineage, "(fail)"),
+  TRUE ~ lineage
+))
+
+# Create table
+data %>%
+  select("episerve_number", "dhb", "lineage_extra", "date_received") %>%
+  knitr::kable(col.names = c("Episerve number",
+                             "DHB",
+                             "Lineage",
+                             "Date received"))
+```
+
 ## Lineage  
 
 
@@ -28,4 +61,4 @@ output:
 -----
 
 **Notice of Confidential Information:**
-If you recieve this report in error, please notify the sender immediately. The information contained in this report is legally privilledged and confidential. Unauthorised use, dissemination, distribution or reproduction of this report is prohibited.
+If you receive this report in error, please notify the sender immediately. The information contained in this report is legally privileged and confidential. Unauthorized use, dissemination, distribution or reproduction of this report is prohibited.
