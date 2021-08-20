@@ -23,6 +23,8 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FA
 # Load libraries
 library(dplyr)
 library(flextable)
+library(ggplot2)
+library(scales)
 
 # Set results dir
 results_dir <- "/home/lkemp/covid_reporting_template/"
@@ -33,6 +35,12 @@ data <- read.table(paste0(results_dir, "report_table.tsv"),
                    col.names = c("var_1", "episerve_number", "dhb", "lineage", "date_received", "var_2", "var_3"),
                    na.strings = "NA")
 
+data_2 <- read.table("/home/lkemp/covid_reporting_template/microreact_new.tsv",
+                     header = TRUE,
+                     fill = TRUE,
+                     sep = "\t",
+                     na.strings = "NA")
+
 # Create a column conditionally adding var_3 to lineage for table (whe partial, repeat or fail)
 data <- data %>%
   mutate(lineage_extra = case_when(
@@ -42,8 +50,10 @@ data <- data %>%
     TRUE ~ lineage
   ))
 
-# Format date column
+# Format date columns
 data$date_received <- format(as.Date(data$date_received), format="%d-%m-%Y")
+data_2$onset_date <- format(as.Date(data_2$onset_date), format="%d-%m-%Y")
+data_2$report_date <- format(as.Date(data_2$report_date), format="%d-%m-%Y")
 
 # Create table
 data %>%
@@ -61,6 +71,24 @@ data %>%
 
 ## Interim Analysis
 
+```{r}
+# Set the cluster to view
+cluster <- "OB-20-108810-NA"
+
+data_2 %>%
+  # Get all the entries for that cluster
+  filter(outbreakNum == cluster) %>%
+  # Get the number of cases
+  group_by(onset_date, episurvnumber) %>%
+  summarise(number_of_cases = n()) %>%
+  # Plot
+  ggplot(aes(x=onset_date, y = number_of_cases, fill = episurvnumber)) +
+  geom_bar(stat="identity") +
+  xlab("Onset date (or lab sample date)") +
+  ylab("Number of cases") +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 90))
+```
 
 ## Cases detected in Managed Isolation
 
