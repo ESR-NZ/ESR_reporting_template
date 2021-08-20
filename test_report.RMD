@@ -39,6 +39,9 @@ data <- data %>%
     TRUE ~ lineage
   ))
 
+# Format date column
+data$date_received <- format(as.Date(data$date_received), format="%d-%m-%Y")
+
 # Create table
 data %>%
   select("episerve_number", "dhb", "lineage_extra", "date_received") %>%
