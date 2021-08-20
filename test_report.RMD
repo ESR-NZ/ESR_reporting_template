@@ -24,8 +24,11 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FA
 library(dplyr)
 library(flextable)
 
+# Set results dir
+results_dir <- "/home/lkemp/covid_reporting_template/"
+
 # Read data and set header names (thing's I don't know what they are, set to var_*)
-data <- read.table("/home/lkemp/covid_reporting_template/report_table.tsv",
+data <- read.table(paste0(results_dir, "report_table.tsv"),
                    sep = "\t",
                    col.names = c("var_1", "episerve_number", "dhb", "lineage", "date_received", "var_2", "var_3"),
                    na.strings = "NA")
