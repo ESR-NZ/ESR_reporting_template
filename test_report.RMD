@@ -261,25 +261,25 @@ This section is here to show a collection of additional elements that can be use
 If ever required there is the option to have bootstrap-styled "information boxes". These have been coloured according to the "official" ESR colours.
 
 <div class="alert alert-custom-blue">
-  <strong>ESR blue</strong> - This is part of the offical ESR colour scheme (#0097db).
+  <strong>ESR blue</strong> - This is part of the official ESR colour scheme (#0097db).
 </div>
 
 <div class="alert alert-custom-green">
-  <strong>ESR green</strong> - This is part of the offical ESR colour scheme (#85C659).
+  <strong>ESR green</strong> - This is part of the official ESR colour scheme (#85C659).
 </div>
 
 <div class="alert alert-custom-red">
-  <strong>ESR red</strong> - This is part of the offical ESR colour scheme (#ec1515).
+  <strong>ESR red</strong> - This is part of the official ESR colour scheme (#ec1515).
 </div>
 
 <div class="alert alert-custom-yellow">
-  <strong>ESR yellow</strong> - This is part of the offical ESR colour scheme (#febf2a).
+  <strong>ESR yellow</strong> - This is part of the official ESR colour scheme (#febf2a).
 </div>
 
 <div class="alert alert-custom-purple">
-  <strong>ESR purple</strong> - This is part of the offical ESR colour scheme (#784f96).
+  <strong>ESR purple</strong> - This is part of the official ESR colour scheme (#784f96).
 </div>
 
 <div class="alert alert-custom-lightgreen">
-  <strong>ESR lightgreen</strong> - This is part of the offical ESR colour scheme (#1abcc1).
+  <strong>ESR lightgreen</strong> - This is part of the official ESR colour scheme (#1abcc1).
 </div>
