@@ -1,7 +1,9 @@
+/* using ubuntu font, but can easily change to arial or other */
 body {
   font-family: Ubuntu, helvetica, sans-serif;
 }
 
+/* heading 1 set to be ESR blue */
 h1 {
   color: rgb(0, 151, 219);
   font-size: 130%;
@@ -20,7 +22,7 @@ h2 {
   line-height: 12px;
   background-color: #0097db;
 }
-
+/* set span of bar for h2 across page */
 h2 span {
   background-color: #000;
   color: #fff;
@@ -50,7 +52,7 @@ h4 {
   color: #00407d;
 }
 
-/* information/alert boxes with different ESR colours */
+/* information/alert boxes with different ESR colours, using white font */
 .alert-custom-blue{
   background-color:#0097db;
   color:#fff;
@@ -91,15 +93,17 @@ a:hover {
     background-color: #0097db;
 }
 
-/* table caption colour */
+/* table caption formatting */
 caption {
   color:rgb(77, 77, 77);
   font-size: 1.0em;
   font-weight: bold;
+  font-style: italic;
 }
-/* figure caption colour */
+/* figure caption formatting */
 p.caption {
   color:rgb(77, 77, 77);
   font-size: 1.0em;
   font-weight: bold;
+  font-style: italic;
 }
