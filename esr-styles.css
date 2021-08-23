@@ -1,19 +1,33 @@
 body {
-  font-family: Calibri, helvetica, sans-serif;
+  font-family: Ubuntu, helvetica, sans-serif;
 }
 
 h1 {
   color: rgb(0, 151, 219);
-  font-size: 127%;
+  font-size: 130%;
 }
 
 .title {
   margin-right: 200px;
 }
 
+/* define h2 to have a bg that is ESR blue width of page */
 h2 {
-  color: rgb(112, 111, 111);
-  font-size: 121%;
+  color: #fff;
+  font-size: 128%;
+  font-weight: bold;
+  padding: 10px;
+  line-height: 12px;
+  background-color: #0097db;
+}
+
+h2 span {
+  background-color: #000;
+  color: #fff;
+  padding: 5px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: 2;
 }
 
 h3 {
@@ -34,4 +48,58 @@ h4 {
   left: 50%;
   font-size: 500%;
   color: #00407d;
+}
+
+/* information/alert boxes with different ESR colours */
+.alert-custom-blue{
+  background-color:#0097db;
+  color:#fff;
+}
+
+.alert-custom-green{
+  background-color:#85C659;
+  color:#fff;
+}
+
+.alert-custom-red{
+  background-color:#ec1515;
+  color:#fff;
+}
+
+.alert-custom-yellow{
+  background-color:#febf2a;
+  color:#fff;
+}
+
+.alert-custom-purple{
+  background-color:#784f96;
+  color:#fff;
+}
+
+.alert-custom-lightgreen{
+  background-color:#1abcc1;
+  color:#fff;
+}
+
+/* remove underline on hover */
+a:hover {
+  text-decoration: none;
+}
+
+/* Change TOC hover to ESR blue */
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #0097db;
+}
+
+/* table caption colour */
+caption {
+  color:rgb(77, 77, 77);
+  font-size: 1.0em;
+  font-weight: bold;
+}
+/* figure caption colour */
+p.caption {
+  color:rgb(77, 77, 77);
+  font-size: 1.0em;
+  font-weight: bold;
 }
