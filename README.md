@@ -37,7 +37,7 @@ git clone https://github.com/ESR-NZ/ESR_reporting_template.git
 
 ### Open the reporting template in an RStudio project
 
-Navigate to RStudio hosted on ESR's production network at [https://rstudio.esr.cri.nz:8787](https://rstudio.esr.cri.nz:8787), use your regular ESR login credentials to login to RStudio
+Navigate to RStudio hosted on ESR's production network at [http://rstudio.esr.cri.nz:8787](http://rstudio.esr.cri.nz:8787), use your regular ESR login credentials to login to RStudio
 
 ![RStudio sign in](./images/rstudio_signin.png)
 
