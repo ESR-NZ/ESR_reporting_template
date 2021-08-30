@@ -1,12 +1,7 @@
 # ESR Reporting Template
 
-This repository contains templating for consistent themed ESR reports/documents using [RMarkdown](https://rmarkdown.rstudio.). Currently, knitting to a html document/report is supported.
-
-Here's a peek at the rendered html report:
-
-![Report preview](./images/report_preview.gif)
-
 - [ESR Reporting Template](#esr-reporting-template)
+  - [Description](#description)
   - [Assumptions](#assumptions)
   - [How to use](#how-to-use)
     - [Clone this github repository on ESR's production network](#clone-this-github-repository-on-esrs-production-network)
@@ -15,6 +10,14 @@ Here's a peek at the rendered html report:
     - [Include R code and text relevant to your analyses/report](#include-r-code-and-text-relevant-to-your-analysesreport)
     - ["Knit" (render) the document](#knit-render-the-document)
     - [More information](#more-information)
+
+## Description
+
+This repository contains templating for consistent themed ESR reports/documents using [RMarkdown](https://rmarkdown.rstudio.). Currently, knitting to a html document/report is supported.
+
+Here's a peek at the rendered html report:
+
+![Report preview](./images/report_preview.gif)
 
 ## Assumptions
 
