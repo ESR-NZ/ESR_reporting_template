@@ -10,7 +10,9 @@ See an example [rendered html report](./reporting_template.html)
     - [Clone this github repository on ESR's production network](#clone-this-github-repository-on-esrs-production-network)
     - [Open the reporting template in an RStudio project](#open-the-reporting-template-in-an-rstudio-project)
     - [Set formatting options in the yaml front matter](#set-formatting-options-in-the-yaml-front-matter)
-    - [Include R code and text relevant to your report](#include-r-code-and-text-relevant-to-your-report)
+    - [Include R code and text relevant to your analyses/report](#include-r-code-and-text-relevant-to-your-analysesreport)
+    - ["Knit" (render) the document](#knit-render-the-document)
+    - [More information](#more-information)
 
 ## Assumptions
 
@@ -27,13 +29,15 @@ Navigate to your project directory, for example
 cd /home/leah/my_project_to_report/
 ```
 
+Clone this repository
+
 ```bash
 git clone https://github.com/ESR-NZ/ESR_reporting_template.git
 ```
 
 ### Open the reporting template in an RStudio project
 
-Navigate to RStudio hosted on ESR's production network at [rstudio.esr.cri.nz:8787](rstudio.esr.cri.nz:8787), use your regular ESR login credentials to login to RStudio
+Navigate to RStudio hosted on ESR's production network at [https://rstudio.esr.cri.nz:8787](https://rstudio.esr.cri.nz:8787), use your regular ESR login credentials to login to RStudio
 
 ![RStudio sign in](./images/rstudio_signin.png)
 
@@ -70,4 +74,12 @@ For example, you can set:
 - Set the table of contents depth
 - Choose whether or not to number report sections
 
-### Include R code and text relevant to your report
+### Include R code and text relevant to your analyses/report
+
+### "Knit" (render) the document
+
+![Render document](./images/render_document.gif)
+
+### More information
+
+There is so much more you can do with [RMarkdown](https://rmarkdown.rstudio.), get started with wicked reproducible (and interactive!) documents[here](https://bookdown.org/yihui/rmarkdown/)

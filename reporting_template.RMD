@@ -3,13 +3,13 @@ title: "ANALYSIS REPORT"                                # set the main report ti
 author:
   # - Jane Doe^[Institution Two, jane@example.org]      # add report authors (uncomment if using)
   # - John Doe^[Institution One, john@example.org]      # add a second report author (uncomment if using)
-date: "Date: `r format(Sys.time(), '%d/%m/%Y')`"        # grabs current date
+date: "Date: `r format(Sys.time(), '%d/%m/%Y')`"
 always_allow_html: true
 output:
   bookdown::html_document2:
-    toc: true                                           # create a table of contents
-    toc_depth: 2                                        # set the table of contents depth
-    number_sections: false                              # choose whether or not to number sections
+    toc: true                                           # create a table of contents (true or false)
+    toc_depth: 2                                        # set the table of contents depth (number)
+    number_sections: false                              # choose whether or not to number sections (true or false)
     toc_float: true
     self_contained: yes
     css: esr-styles.css
