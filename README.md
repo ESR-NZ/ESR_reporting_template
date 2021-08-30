@@ -2,7 +2,9 @@
 
 This repository contains templating for consistent themed ESR reports/documents using [RMarkdown](https://rmarkdown.rstudio.). Currently, knitting to a html document/report is supported.
 
-See an example of the [rendered html report](./reporting_template.html)
+Here's a peek at the rendered html report:
+
+![Report preview](./images/report_preview.gif)
 
 - [ESR Reporting Template](#esr-reporting-template)
   - [Assumptions](#assumptions)
