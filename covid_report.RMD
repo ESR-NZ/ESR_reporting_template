@@ -24,7 +24,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FALSE)
 ```
 
-## SARS-CoV-2 (COVID-19) #109 
+## SARS-CoV-2 (COVID-19) #XYZ
 
 ```{r env, eval=T}
 # Load libraries
