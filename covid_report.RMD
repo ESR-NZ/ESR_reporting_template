@@ -38,30 +38,25 @@ library(bookdown)
 #     install.packages("BiocManager")
 # BiocManager::install("ggtree")
 library(ggtree)
-# library(berryFunctions)
-#
+library(berryFunctions)
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-```{r data, eval=F}
-# Set results dir
+```{r data}
+# set results dir
 results_dir <- "./"
 
-# Read data and set header names (thing's I don't know what they are, set to var_*)
+# read data and set header names (thing's I don't know what they are, set to var_*)
 data <- read.table(paste0(results_dir, "report_table.tsv"),
                    sep = "\t",
                    col.names = c("var_1", "episerve_number", "dhb", "lineage", "date_received", "var_2", "var_3"),
                    na.strings = "NA")
 
-# data_2 <- read.table("/home/lkemp/covid_reporting_template/microreact_new.tsv",
-#                      header = TRUE,
-#                      fill = TRUE,
-#                      sep = "\t",
-#                      na.strings = "NA")
 
-# Create a column conditionally adding var_3 to lineage for table (whe partial, repeat or fail)
+
+# create a column conditionally adding var_3 to lineage for table (when partial, repeat or fail)
 data <- data %>%
   mutate(lineage_extra = case_when(
     var_3 == "PARTIAL" ~ paste(lineage, "(partial)"),
@@ -70,41 +65,19 @@ data <- data %>%
     TRUE ~ lineage
   ))
 
-# Format date columns
+# format date columns
 data$date_received <- format(as.Date(data$date_received), format="%d-%m-%Y")
-# data_2$onset_date <- format(as.Date(data_2$onset_date), format="%d-%m-%Y")
-# data_2$report_date <- format(as.Date(data_2$report_date), format="%d-%m-%Y")
 
-data <- insertRows(data, c(1,15) , new = NA)
+# remove any rows which are all NA values (empty rows)
+data <- filter(data, rowSums(is.na(data)) != ncol(data))
 
-# Create table
-table1 <- 
-data %>%
-  select("episerve_number", "dhb", "lineage_extra", "date_received") %>%
-  flextable() %>%
-  set_header_labels(values = list(episerve_number = "Episerve number",
-                                  dhb = "DHB",
-                                  lineage_extra = "Lineage",
-                                  date_received = "Date Received")) %>%
-  autofit() %>%
-  theme_alafoli()
-table1 <- bg(table1, bg = "#000000", part = "header", )
-table1 <- color(table1, color = "white", part = "header")
-table1 <- color(table1, part = "footer", color = "#666666")
-
-table1 <- set_caption(
-  table1,
-  "Caption can go here if needed.",
-  autonum = NULL,
-  # style = "Table Caption",
-  html_escape = TRUE
-)
-
-table1
+# create a column/variable that defines if a sample is in the community or MIQ
+# **IMPORTANT** this must match the order of the samples/rows in the dataframe
+data$community_or_MIQ <- c("Community", "Community", "Community", "Community", "Community", "Community", "Community", "Community", "Community", "Community", "MIQ", "MIQ", "MIQ", "MIQ", "MIQ", "MIQ", "MIQ", "MIQ", "MIQ", "MIQ")
 ```
 
 ```{r table}
-# example table witn ESR specific formatting
+# ESR specific formatting
 set_flextable_defaults(
   font.family = "Arial", 
   font.size = 11,
@@ -113,19 +86,32 @@ set_flextable_defaults(
   digits = 1,
   theme_fun = "theme_box"
   )
-# use mtcars
-mtcars_sorted <- mtcars %>% arrange(cyl, gear)
-# create table
-table1 <- as_grouped_data(mtcars_sorted, groups = "cyl") %>% 
-  as_flextable() %>% 
+
+# prepare data for table
+table1 <- data %>%
+  # select the variables to be displayed in the table
+  select("episerve_number", "dhb", "lineage_extra", "date_received", "community_or_MIQ") %>%
+  # select a variable to group the table by, note the data needs to be arranged by this variable first
+  arrange(community_or_MIQ, date_received) %>%
+  as_grouped_data(groups = "community_or_MIQ") %>%
+  # make table
+  as_flextable() %>%
+  # rename column labels
+  set_header_labels(values = list(episerve_number = "EpiSurv number",
+                                  dhb = "DHB",
+                                  lineage_extra = "Lineage",
+                                  date_received = "Date Received")) %>%
   autofit()
+
+# formatting
 table1 <- bg(table1, bg = "#000000", part = "header")
 table1 <- color(table1, color = "white", part = "header")
 table1 <- color(table1, part = "footer", color = "#666666")
-table1 <- bg(table1, i = ~ !is.na(cyl), bg = "#0097db", part = "body")
-table1 <- color(table1, i = ~ !is.na(cyl), color = "white", part = "body")
-table1 <- bold(table1, j = 1, i = ~ !is.na(cyl))
-table1 <- align(table1, j = 1, i = ~ !is.na(cyl), align = "left", part = "body")
+table1 <- bg(table1, i = ~ !is.na(community_or_MIQ), bg = "#0097db", part = "body")
+table1 <- color(table1, i = ~ !is.na(community_or_MIQ), color = "white", part = "body")
+table1 <- bold(table1, j = 1, i = ~ !is.na(community_or_MIQ))
+table1 <- align(table1, j = 1, i = ~ !is.na(community_or_MIQ), align = "left", part = "body")
+
 # add caption
 table1 <- set_caption(
   table1,
@@ -134,6 +120,7 @@ table1 <- set_caption(
   # style = "Table Caption",
   html_escape = TRUE
 )
+
 # print table
 table1
 ```
