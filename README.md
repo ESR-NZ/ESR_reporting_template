@@ -2,10 +2,12 @@
 
 - [ESR Reporting Template](#esr-reporting-template)
   - [Description](#description)
+  - [Software dependencies](#software-dependencies)
   - [Assumptions](#assumptions)
   - [How to use](#how-to-use)
     - [Clone this github repository on ESR's production network](#clone-this-github-repository-on-esrs-production-network)
     - [Open the reporting template in an RStudio project](#open-the-reporting-template-in-an-rstudio-project)
+    - [Restore the renv environment to install software dependencies](#restore-the-renv-environment-to-install-software-dependencies)
     - [Set formatting options in the yaml front matter](#set-formatting-options-in-the-yaml-front-matter)
     - [Include R code and text relevant to your analyses/report](#include-r-code-and-text-relevant-to-your-analysesreport)
     - ["Knit" (render) the document](#knit-render-the-document)
@@ -18,6 +20,10 @@ This repository contains templating for consistent themed ESR reports/documents 
 Here's a peek at the rendered html report:
 
 ![Report preview](./images/report_preview.gif)
+
+## Software dependencies
+
+- [renv](https://rstudio.github.io/renv/) installed (see [installation instructions](https://rstudio.github.io/renv/#installation))
 
 ## Assumptions
 
@@ -46,13 +52,19 @@ Navigate to RStudio hosted on ESR's production network at [http://rstudio.esr.cr
 
 ![RStudio sign in](./images/rstudio_signin.png)
 
-Create a new RStudio project
+Create a new RStudio project (this template was created using R version 4.1.2, use this version of R if you'd like to fully reproduce this example template, but the code should be adaptable to other versions of R with some R coding knowledge)
 
 ![Create project in RStudio](./images/create_project_in_rstudio.gif)
 
 Open the reporting RMarkdown (RMD) file, this is the main file for the reporting template
 
 ![Create project in RStudio](./images/open_rmd_file.gif)
+
+### Restore the renv environment to install software dependencies
+
+```{r}
+renv::restore()
+```
 
 ### Set formatting options in the yaml front matter
 
