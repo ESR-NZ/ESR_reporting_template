@@ -34,10 +34,7 @@ library(ggplot2)
 library(scales)
 library(plyr)
 library(bookdown)
-# if (!requireNamespace("BiocManager", quietly = TRUE))
-#     install.packages("BiocManager")
-# BiocManager::install("ggtree")
-library(ggtree)
+library(ape)
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
@@ -142,15 +139,13 @@ Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saep
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. 
 
-```{r ggtree, echo=F, fig.cap="Caption can go here if needed.", fig.topcaption=TRUE, fig.align="center"}
-tree <- read.tree("data/tree_newick.nwk")
-mytree <- ggtree(tree) + 
-  geom_tiplab() + 
-  geom_hilight(node=17, fill="#0097db") + 
-  geom_hilight(node=21, fill="#1abcc1") +
-  geom_taxalink("E", "H", color="#784f96") +
-  geom_taxalink("C", "G", color="#febf2a", curvature=-1.1)
-mytree
+```{r tree, echo=F, fig.cap="Caption can go here if needed.", fig.topcaption=TRUE, fig.align="center"}
+tree <- ape::read.tree("data/tree_newick.nwk")
+
+co <- c(rep("#0097db", 12), rep("#febf2a", 4))
+plot(tree,
+     edge.col = co,
+     tip.color = "black")
 ```
 
 -----
